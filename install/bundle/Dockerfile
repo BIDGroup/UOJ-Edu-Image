@@ -4,9 +4,9 @@ MAINTAINER MascoSkray <MascoSkray@gmail.com>
 #Update apt and install git
 RUN apt-get update -y && apt-get install -y git
 #Clone the latest UOJ Community verison to local
-RUN cd ~ && git clone https://github.com/BIDGroup/UOJ-Edu-Image.git
+RUN cd ~ && git clone https://github.com/BIDGroup/UOJ-Edu-Image.git && cd ~/UOJ-Edu-Image/ && git submodule update --init --recursive
 #Install environment and set startup script
-RUN cd ~/UOJ-Edu-Image/install/bundle && bash install.sh -e && echo "\
+RUN cd ./install/bundle && bash install.sh -e && echo "\
 #!/bin/bash\n\
 if [ ! -f "/var/svn/.UOJSetupDone" ]; then\n\
 	cd ~/UOJ-Edu-Image/install/bundle && bash install.sh -c\n\
