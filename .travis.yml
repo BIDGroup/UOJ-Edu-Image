@@ -2,10 +2,8 @@ sudo: required
 
 services:
   - docker
-before_install:
-  wget https://raw.githubusercontent.com/BIDGroup/UOJ-Edu-Image/master/install/bundle/Dockerfile >Dockerfile
 script:
-  docker build -t BIDGroup/UOJ-Edu-Image .
+  docker build -t BIDGroup/UOJ-Edu-Image install/bundle
   docker images
   docker run --name uoj -p 80:80 -p 3690:3690 --cap-add SYS_PTRACE BIDGroup/UOJ-Edu-Image
   docker ps -a
