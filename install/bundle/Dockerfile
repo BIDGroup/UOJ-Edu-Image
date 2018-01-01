@@ -2,7 +2,7 @@ FROM ubuntu:14.04
 MAINTAINER MascoSkray <MascoSkray@gmail.com>
 
 #Update apt and install git
-RUN apt-get update -y && apt-get install -y git
+RUN apt-get update -y -q && apt-get install -y -q git
 #Clone the latest UOJ Community verison to local
 RUN cd ~ && git clone https://github.com/BIDGroup/UOJ-Edu-Image.git && cd ~/UOJ-Edu-Image/ && git submodule update --init --recursive
 #Install environment and set startup script
