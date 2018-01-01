@@ -28,7 +28,7 @@ getOracleJDK(){
 	JDK_MIRROR_LINK=http://ftp.osuosl.org/pub/funtoo/distfiles/oracle-java/
 	JDK_CNMIRROR_LINK=http://funtoo.neu.edu.cn/funtoo/distfiles/oracle-java/
 	curl -s ${JDK_MIRROR_LINK} | grep -oP '>jdk-[7,8].*-linux-x64.tar' | sed -e 's/[\",>]//g' -e 's/-linux-x64.tar//g' >jdkdist.list
-	wget ${JDK_MIRROR_LINK}$(sed -n '1p' jdkdist.list)-linux-x64.tar.gz && wget ${JDK_MIRROR_LINK}$(sed -n '2p' jdkdist.list)-linux-x64.tar.gz
+	wget -q ${JDK_MIRROR_LINK}$(sed -n '1p' jdkdist.list)-linux-x64.tar.gz && wget -q ${JDK_MIRROR_LINK}$(sed -n '2p' jdkdist.list)-linux-x64.tar.gz
 	#Change jdk version to faq.php
 	sed -i -e "s/jdk-7u76/$(sed -n '1p' jdkdist.list)/g" -e "s/jdk-8u31/$(sed -n '2p' jdkdist.list)/g" ../../uoj/1/app/controllers/faq.php
 	#Move jdk file to judge user root
