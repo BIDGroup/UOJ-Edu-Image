@@ -150,7 +150,7 @@ setWebConf(){
 	#Commit web source file
 	svn co svn://127.0.0.1/uoj --username root --password $_svn_certroot_password_
 	mv ../../uoj/1 uoj/1 && cd uoj
-	svn add 1 && svn ci -m "Installtion commit" --username root --password $_svn_certroot_password_
+	svn add 1 -q && svn ci -m "Installtion commit" --username root --password $_svn_certroot_password_
 	cd .. && rm uoj /var/www/uoj -r
 	#Set webroot path
 	ln -s /var/svn/uoj/cur/uoj/1 /var/www/uoj
