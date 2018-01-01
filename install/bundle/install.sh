@@ -140,17 +140,17 @@ UOJEOF
 	chmod +x /var/svn/problem/post-commit.sh
 	#Precheckout to cur folder
 	mkdir /var/svn/uoj/cur /var/svn/judge_client/cur
-	svn co svn://127.0.0.1/uoj --username root --password $_svn_certroot_password_ /var/svn/uoj/cur/uoj
-	svn co svn://127.0.0.1/judge_client --username root --password $_svn_certroot_password_ /var/svn/judge_client/cur/judge_client
+	svn co -q svn://127.0.0.1/uoj --username root --password $_svn_certroot_password_ /var/svn/uoj/cur/uoj
+	svn co -q svn://127.0.0.1/judge_client --username root --password $_svn_certroot_password_ /var/svn/judge_client/cur/judge_client
 	chown local_main_judger /var/svn/judge_client/cur/judge_client -R
 }
 
 setWebConf(){
 	echo -e "\n\n==> Setting web files"
 	#Commit web source file
-	svn co svn://127.0.0.1/uoj --username root --password $_svn_certroot_password_
+	svn co -q svn://127.0.0.1/uoj --username root --password $_svn_certroot_password_
 	mv ../../uoj/1 uoj/1 && cd uoj
-	svn add 1 -q && svn ci -m "Installtion commit" --username root --password $_svn_certroot_password_
+	svn add -q 1 && svn ci -m "Installtion commit" --username root --password $_svn_certroot_password_
 	cd .. && rm uoj /var/www/uoj -r
 	#Set webroot path
 	ln -s /var/svn/uoj/cur/uoj/1 /var/www/uoj
