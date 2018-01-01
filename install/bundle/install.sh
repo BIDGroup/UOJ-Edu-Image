@@ -14,8 +14,8 @@ getAptPackage(){
 	#Set MySQL root password
 	debconf-set-selections <<< "mysql-server-5.6 mysql-server/root_password password $_database_password_" && debconf-set-selections <<< "mysql-server-5.6 mysql-server/root_password_again password $_database_password_"
 	#Update apt sources and install
-	apt-get update -y
-	apt-get install -y vim ntp zip unzip curl wget subversion apache2 libapache2-mod-xsendfile libapache2-mod-auth-mysql php5 php5-dev php-pear php5-mysql mysql-server-5.6 cmake fp-compiler re2c libv8-dev libyaml-dev python python3 python-requests
+	apt-get -qq update -y
+	apt-get -qq install -y vim ntp zip unzip curl wget subversion apache2 libapache2-mod-xsendfile libapache2-mod-auth-mysql php5 php5-dev php-pear php5-mysql mysql-server-5.6 cmake fp-compiler re2c libv8-dev libyaml-dev python python3 python-requests
 	#Install PHP extensions
 	echo -e "\n\n" | pecl install v8js-0.1.3 yaml-1.3.1
 }
